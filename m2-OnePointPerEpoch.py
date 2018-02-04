@@ -109,7 +109,7 @@ def trainWithMultiplePointsPerEpoch(steps, train_step, batch_size):
             batch_xs = xData[batch_start_idx : batch_end_idx]
             batch_ys = yData[batch_start_idx : batch_end_idx]
 
-            # reshape the 1D arrays as 2D feature vectors with manby rows and 1 column
+            # reshape the 1D arrays as 2D feature vectors with many rows and 1 column
             feed = { x: batch_xs.reshape(-1, 1), y_: batch_ys.reshape(-1, 1) }
 
             sess.run(train_step, feed_dict=feed)
@@ -130,4 +130,3 @@ def trainWithMultiplePointsPerEpoch(steps, train_step, batch_size):
 
 # batch size of one is equivalent to stoichastic gradient descent method
 trainWithMultiplePointsPerEpoch(5000, train_step_ftrl, len(xData))
-    
