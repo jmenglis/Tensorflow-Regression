@@ -42,7 +42,9 @@ cost = tf.reduce_mean(tf.square(y_ - y))
 cost_hist = tf.summary.histogram('cost', cost)
 
 #train_step_constant = tf.train.GradientDescentOptimizer(0.1).minimize(cost)
-train_step_adagrad = tf.train.AdagradOptimizer(1).minimize(cost)
+#train_step_adagrad = tf.train.AdagradOptimizer(1).minimize(cost)
+
+train_step_ftrl = tf.train.FtrlOptimizer(1).minimize(cost)
 
 # Set up method to perform the actual training.  Allows us to 
 # modify the optimizer used and alos the number of steps
@@ -79,4 +81,4 @@ def trainWithOnePointPerEpoch(steps, train_step):
                 print("cost: %f" % sess.run(cost, feed_dict=feed))
         writer.close()
 
-trainWithOnePointPerEpoch(10000, train_step_adagrad)
+trainWithOnePointPerEpoch(10000, train_step_ftrl)
